@@ -12,8 +12,9 @@ Asteroids.PreloadState = {
         this.load.image('asteroid1', 'assets/oldMan.png');
         this.load.image('asteroid2', 'assets/oldMan2.png');
         this.load.image('bullet', 'assets/monster.png');
+        this.load.image('startButton', 'assets/start.png');
     },
     create: function() {
-        this.state.start('Game');
+        this.state.start('Menu');
     }
 };
