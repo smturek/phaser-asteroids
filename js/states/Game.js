@@ -28,6 +28,7 @@ Asteroids.GameState = {
         };
 
         this.HUD_STYLE = {font: '40px Arial', fill: '#FFFFFF', align: 'center'};
+        this.EXTRA_LIFE_INTERVAL = 10000;
     },
     create: function() {
         this.initPlayer();
@@ -64,6 +65,7 @@ Asteroids.GameState = {
 
         this.playerLives = this.PLAYER_PROPERTIES.startingLives;
         this.playerScore = 0;
+        this.nextExtraLife = this.EXTRA_LIFE_INTERVAL;
 
         this.livesText = this.game.add.text(20, 10, this.playerLives, this.HUD_STYLE);
 
@@ -219,6 +221,12 @@ Asteroids.GameState = {
     updateScore: function(score) {
         this.playerScore += score;
         this.scoreText.text = this.playerScore;
+
+        if (this.playerScore >= this.nextExtraLife) {
+            this.playerLives++;
+            this.livesText.text = this.playerLives;
+            this.nextExtraLife += this.EXTRA_LIFE_INTERVAL;
+        }
     },
     nextLevel: function() {
         this.asteroidGroup.removeAll(true);
